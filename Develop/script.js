@@ -1,20 +1,23 @@
 var generateBtn = document.querySelector("#generate");
+var copyPasswordBtn = document.querySelector("#copyPasswordBtn");
 
-var upperCaseAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowerCaseAlpha = "abcdefghijklmnopqrstuvwxyz";
-var numericCharacters = "1234567890";
-var specialCharters = "!@#$%^&";
+for (var i=0; i<passwordLength; i++) 
+{
+  console.log('This is your number',i);
+}
+
 
 function userChoices() {
+  console.log("askUser() was called");
   var passwordLength = prompt(
-    "How many characters long is your password pick between 8 and 128"
+    "Pick a password consisting of 8 to 128 characters!"
   );
   if (passwordLength < 8 || passwordLength > 128) {
     alert("You did it wrong!");
   }
   while (passwordLength < 8 || passwordLength > 128) {
     passwordLength = prompt(
-      "How many characters long is your password pick between 8 and 128"
+      "Pick a password consisting of 8 to 128 characters!"
     );
     if (passwordLength < 8 || passwordLength > 128) {
       alert("You did it wrong!");
@@ -51,17 +54,37 @@ function userChoices() {
     if (!upperCase && !lowerCase && !isNumeric && !isSpecial) {
       alert("You did it wrong!");
     }
-  }
+  console.log("askUser() is returning");
+  console.log(passwordLength, upperCase, lowerCase, isNumeric, isSpecial);
   return [passwordLength, upperCase, lowerCase, isNumeric, isSpecial];
+  }
 }
 
 function generatePassword(userChoices) {
+  var index = Math.floor(Math.random() * passwordLength);
+  var userChoices = options[index];
+  document.getElementById("message").innerHTML=copyPasswordBtn;
   // if then all are true then else if uppercase is true add to a variable, if lowercase is true add to a variable, if numeric is true add to a variable, if special is true add to a variable
   //then we have a variable with all the chosen characters
   //then we...
-  return userChoices;
+  if(userChoices==="quit") {
+  return "quit";
 }
-//    don't touch the below code...already done
+}
+var passwordLength = userChoices[0];
+var upperCase = userChoices[1];
+var lowerCase = userChoices[2];
+var isNumeric = userChoices[3];
+var isSpecial = userChoices[4];
+console.log("genereatePassword()was called");
+
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var isnumeric = "1234567890";
+var isspecial = "!@#$%^&*()_+{}:,./';[";
+
+
+//    don't touch the below code...
 //-----------------------------------------
 // Write password to the #password input
 function writePassword() {
